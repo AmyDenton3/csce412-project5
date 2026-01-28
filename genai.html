@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Showcase | Amy Denton</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .content-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .content-section p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .ai-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .prompt-container {
+            background: #f0f0f0;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .prompt-container label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 1rem;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .ai-features {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Amy Denton</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="qualifications.html">Qualifications</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="genai.html" style="color: #667eea;">AI Showcase</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Generative AI Showcase</h1>
+            <p>Exploring the Capabilities and Applications of Artificial Intelligence</p>
+        </section>
+
+        <section class="content-section">
+            <h2>What is Generative AI?</h2>
+            <p>Generative Artificial Intelligence (GenAI) represents a transformative technology that can create new content, including text, images, code, and more. Unlike traditional AI systems that classify or recognize patterns, generative AI learns from vast amounts of data and can produce entirely new, original outputs based on learned patterns and user prompts.</p>
+            <p>This page demonstrates the practical applications and potential of generative AI technology, created through iterative prompting and refinement to achieve the desired output quality and presentation.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Key Capabilities of Generative AI</h2>
+            <div class="ai-features">
+                <div class="feature">
+                    <h3>Natural Language Processing</h3>
+                    <p>GenAI can understand and generate human-like text, enabling conversational interfaces, content creation, and language understanding at scale.</p>
+                </div>
+                <div class="feature">
+                    <h3>Code Generation</h3>
+                    <p>AI systems can write functional code based on descriptions, accelerating development and helping programmers solve complex problems faster.</p>
+                </div>
+                <div class="feature">
+                    <h3>Creative Content Creation</h3>
+                    <p>From images to music to written content, generative AI can assist in creative processes and produce original material in multiple formats.</p>
+                </div>
+                <div class="feature">
+                    <h3>Data Analysis & Insights</h3>
+                    <p>GenAI can analyze complex datasets and provide meaningful insights, summaries, and predictions that inform decision-making.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Applications in Software Engineering</h2>
+            <p>Generative AI has become an invaluable tool in software development, offering numerous practical applications:</p>
+            <ul style="margin-left: 2rem; color: #555;">
+                <li><strong>Code Completion:</strong> AI assists in writing code faster and reducing errors through intelligent suggestions</li>
+                <li><strong>Documentation Generation:</strong> Automatically creating comprehensive documentation from code comments and structure</li>
+                <li><strong>Testing & Debugging:</strong> AI can generate test cases and help identify potential bugs and issues</li>
+                <li><strong>Architecture Design:</strong> Assisting in planning system architecture and identifying design patterns</li>
+                <li><strong>Learning & Training:</strong> Creating personalized learning materials and tutorials for skill development</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Ethical Considerations</h2>
+            <p>As we leverage generative AI technology, it's important to consider ethical implications:</p>
+            <ul style="margin-left: 2rem; color: #555;">
+                <li><strong>Transparency:</strong> Being clear about when AI-generated content is being used</li>
+                <li><strong>Accuracy:</strong> Verifying AI-generated output for correctness and validity</li>
+                <li><strong>Bias:</strong> Understanding and mitigating potential biases in AI-generated content</li>
+                <li><strong>Attribution:</strong> Properly crediting sources and understanding training data usage</li>
+                <li><strong>Responsibility:</strong> Maintaining human oversight and accountability in AI-assisted decisions</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>The Development Process</h2>
+            <p>This page was created through an iterative prompting process. Below is the refined prompt that was used to generate the core concepts and structure of this AI showcase page:</p>
+            
+            <div class="prompt-container">
+                <label for="ai-prompt">Final Prompt Used:</label>
+                <textarea id="ai-prompt" readonly>Build a professional web page about Generative AI that would be appropriate for a portfolio. The page should help visitors understand what GenAI is and why it matters in today's tech landscape.
+
+Include these main sections:
+- An introduction that explains Generative AI in accessible terms and shows why it's significant
+- A breakdown of what GenAI can actually do (text generation, coding, creative content, analysis)
+- Real-world applications, especially in software development and engineering
+- A thoughtful discussion about the ethical side of using AI tools
+- An explanation of how iterative prompting helped refine the content on this page
+- A section about where AI is heading and what to expect
+- Curated links to reputable AI research organizations
+
+Design considerations:
+- Use clear visual organization with good hierarchy
+- Apply a modern color scheme (purples and blues work well)
+- Make information scannable with lists and sections
+- Ensure navigation connects back to other portfolio pages
+- Show that I understand both the technical side and the responsible use of AI
+
+This prompt itself should appear in a text area so visitors can see the actual process behind the page creation.</textarea>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Future of Generative AI</h2>
+            <p>The field of generative AI continues to evolve rapidly. Some exciting areas of future development include:</p>
+            <ul style="margin-left: 2rem; color: #555;">
+                <li><strong>Multimodal AI:</strong> Systems that seamlessly work with text, images, audio, and video simultaneously</li>
+                <li><strong>Improved Reasoning:</strong> Better logical reasoning and complex problem-solving capabilities</li>
+                <li><strong>Personalization:</strong> More customized and context-aware AI responses</li>
+                <li><strong>Efficiency:</strong> Faster and more resource-efficient AI models</li>
+                <li><strong>Integration:</strong> Deeper integration into everyday tools and workflows</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Resources for Learning More</h2>
+            <p>If you're interested in learning more about generative AI, here are some valuable resources:</p>
+            <ul style="margin-left: 2rem; color: #555;">
+                <li><a href="https://www.openai.com" target="_blank" style="color: #667eea;">OpenAI</a> - Leading AI research organization</li>
+                <li><a href="https://www.deepmind.google" target="_blank" style="color: #667eea;">Google DeepMind</a> - AI research and development</li>
+                <li><a href="https://www.anthropic.com" target="_blank" style="color: #667eea;">Anthropic</a> - AI safety and research</li>
+                <li><a href="https://arxiv.org/list/cs.AI/recent" target="_blank" style="color: #667eea;">arXiv AI Papers</a> - Latest research papers</li>
+                <li><a href="https://www.coursera.org/courses?query=generative%20ai" target="_blank" style="color: #667eea;">Coursera AI Courses</a> - Online learning</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <p>Contact: <a href="mailto:amy.denton@gmail.com">amy.denton@gmail.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>
