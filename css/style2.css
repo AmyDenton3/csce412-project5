@@ -231,12 +231,13 @@ p {
     border-radius: 12px;
     border: 2px solid var(--accent-color);
     box-shadow: 0 4px 12px rgba(74, 124, 60, 0.15);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 .link-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(74, 124, 60, 0.2);
+    background-color: rgba(212, 232, 208, 0.3);
+    box-shadow: 0 6px 16px rgba(74, 124, 60, 0.25); /* Adding shading */
 }
 
 .link-card h3 {
@@ -687,7 +688,7 @@ footer a:hover {
     .skill-list {
         grid-template-columns: 1fr;
     }
-    
+
 
     /* Adjust layout for smaller screens */
     .navbar {
