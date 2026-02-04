@@ -23,6 +23,7 @@ body {
     color: var(--text-color);
     background-color: var(--white);
     display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
@@ -104,6 +105,7 @@ main {
     margin-left: 220px;
     width: calc(100% - 220px);
     padding: 0;
+    flex: 1;
 }
 
 
@@ -586,13 +588,15 @@ p {
     text-decoration: underline;
 }
 
-/* Footer */
+/* Footer - full width at bottom of page (peer feedback: move contact from right bar to page footer) */
 footer {
     background-color: var(--primary-color);
     color: var(--white);
     text-align: center;
     padding: 2rem;
-    margin-left: 220px;
+    width: 100%;
+    margin-left: 0;
+    margin-top: auto;
 }
 
 .footer-content p {
