@@ -5,191 +5,300 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Showcase | Amy Denton</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #e8e6e3;
+            background: #1a1a2e;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Subtle moving gradient background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(102, 126, 234, 0.25), transparent),
+                        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(118, 75, 162, 0.2), transparent),
+                        radial-gradient(ellipse 50% 30% at 20% 80%, rgba(102, 126, 234, 0.15), transparent);
+            animation: bgPulse 8s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes bgPulse {
+            from { opacity: 0.8; }
+            to { opacity: 1; }
         }
 
         nav {
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.3);
         }
-
         .nav-container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
+        .logo { font-size: 1.4rem; font-weight: bold; color: #fff; }
+        .nav-links { display: flex; list-style: none; gap: 1.5rem; }
         .nav-links a {
-            color: white;
+            color: #b8b6b2;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
+        .nav-links a:hover { color: #a78bfa; }
+        .nav-links .active { color: #a78bfa; }
 
-        .nav-links a:hover {
-            color: #667eea;
+        main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        /* ----- Animated black cat ----- */
+        .cat-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            width: 120px;
+            height: 100px;
         }
+        .cat {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            animation: catFloat 3s ease-in-out infinite;
+        }
+        @keyframes catFloat {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        .cat-body {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 35px;
+            background: #0d0d0d;
+            border-radius: 50% 50% 45% 45%;
+            box-shadow: inset -2px -2px 4px rgba(255,255,255,0.05);
+        }
+        .cat-head {
+            position: absolute;
+            bottom: 38px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 44px;
+            background: #0d0d0d;
+            border-radius: 50%;
+            box-shadow: inset -2px -2px 4px rgba(255,255,255,0.05);
+        }
+        .cat-ear {
+            position: absolute;
+            bottom: 70px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 18px solid #0d0d0d;
+        }
+        .cat-ear.left { left: 50%; transform: translateX(-28px) rotate(-15deg); }
+        .cat-ear.right { left: 50%; transform: translateX(4px) rotate(15deg); }
+        .cat-tail {
+            position: absolute;
+            bottom: 22px;
+            right: -35px;
+            width: 42px;
+            height: 12px;
+            background: #0d0d0d;
+            border-radius: 6px;
+            transform-origin: left center;
+            animation: tailSway 2s ease-in-out infinite;
+            box-shadow: inset -1px 0 2px rgba(255,255,255,0.05);
+        }
+        @keyframes tailSway {
+            0%, 100% { transform: rotate(-25deg); }
+            50% { transform: rotate(15deg); }
+        }
+        .cat-eye {
+            position: absolute;
+            bottom: 52px;
+            width: 8px;
+            height: 10px;
+            background: #fbbf24;
+            border-radius: 50%;
+            animation: blink 4s ease-in-out infinite;
+        }
+        .cat-eye.left { left: 50%; transform: translateX(-14px); }
+        .cat-eye.right { left: 50%; transform: translateX(6px); }
+        @keyframes blink {
+            0%, 45%, 55%, 100% { transform: translateX(-14px) scaleY(1); }
+            50% { transform: translateX(-14px) scaleY(0.15); }
+        }
+        .cat-eye.right { animation-name: blinkRight; }
+        @keyframes blinkRight {
+            0%, 45%, 55%, 100% { transform: translateX(6px) scaleY(1); }
+            50% { transform: translateX(6px) scaleY(0.15); }
+        }
+        .cat-nose {
+            position: absolute;
+            bottom: 46px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 4px;
+            background: #4b5563;
+            border-radius: 50%;
+        }
+        .cat-whisker {
+            position: absolute;
+            bottom: 48px;
+            width: 20px;
+            height: 1px;
+            background: linear-gradient(90deg, #374151, transparent);
+            border-radius: 1px;
+        }
+        .cat-whisker.w1 { left: 50%; transform: translateX(-24px) rotate(-5deg); }
+        .cat-whisker.w2 { left: 50%; transform: translateX(-24px); }
+        .cat-whisker.w3 { left: 50%; transform: translateX(-24px) rotate(5deg); }
+        .cat-whisker.w4 { left: 50%; transform: translateX(4px) rotate(5deg); }
+        .cat-whisker.w5 { left: 50%; transform: translateX(4px); }
+        .cat-whisker.w6 { left: 50%; transform: translateX(4px) rotate(-5deg); }
 
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 2rem;
+        /* Floating paw prints */
+        .paw {
+            position: fixed;
+            width: 20px;
+            height: 22px;
+            background: radial-gradient(ellipse 6px 8px at 50% 35%, rgba(102, 126, 234, 0.4), transparent),
+                        radial-gradient(circle 3px at 25% 70%, rgba(102, 126, 234, 0.35), transparent),
+                        radial-gradient(circle 3px at 75% 70%, rgba(102, 126, 234, 0.35), transparent);
+            border-radius: 50%;
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 0;
+            animation: pawFloat 6s ease-in-out infinite;
+        }
+        .paw:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .paw:nth-child(2) { top: 25%; right: 15%; animation-delay: 1.5s; }
+        .paw:nth-child(3) { top: 60%; left: 8%; animation-delay: 3s; }
+        .paw:nth-child(4) { top: 70%; right: 12%; animation-delay: 0.5s; }
+        .paw:nth-child(5) { top: 40%; right: 8%; animation-delay: 2s; }
+        @keyframes pawFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+            50% { transform: translateY(-12px) scale(1.1); opacity: 0.7; }
         }
 
         .hero {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
         }
-
         .hero h1 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(167, 139, 250, 0.3);
         }
-
-        .hero p {
-            color: #666;
-            font-size: 1.1rem;
-        }
+        .hero p { color: #a1a1aa; font-size: 1.05rem; }
 
         .content-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(30, 30, 50, 0.6);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            transition: box-shadow 0.3s, border-color 0.3s;
         }
-
+        .content-section:hover {
+            box-shadow: 0 0 24px rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.35);
+        }
         .content-section h2 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
+            color: #a78bfa;
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
         }
+        .content-section p, .content-section li { color: #d4d4d8; margin-bottom: 0.5rem; }
+        .content-section ul { margin-left: 1.5rem; }
 
-        .content-section p {
-            color: #555;
-            margin-bottom: 1rem;
-        }
-
-        .ai-features {
+        .capability-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .capability {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            border-left: 3px solid #a78bfa;
+        }
+        .capability h3 { color: #c4b5fd; font-size: 1rem; margin-bottom: 0.35rem; }
+        .capability p { color: #a1a1aa; font-size: 0.9rem; margin: 0; }
+
+        .prompt-section {
             margin-top: 2rem;
         }
-
-        .feature {
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            border-radius: 5px;
-        }
-
-        .feature h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature p {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        .prompt-container {
-            background: #f0f0f0;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-        }
-
-        .prompt-container label {
+        .prompt-section label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #333;
+            font-weight: 600;
+            color: #a78bfa;
         }
-
-        textarea {
+        .prompt-box {
             width: 100%;
-            height: 200px;
+            min-height: 120px;
+            max-height: 280px;
+            overflow-y: auto;
             padding: 1rem;
-            border: 2px solid #667eea;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
+            background: #0d0d12;
+            border: 1px solid rgba(167, 139, 250, 0.4);
+            border-radius: 8px;
+            color: #d4d4d8;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
             resize: vertical;
         }
-
-        textarea:focus {
+        .prompt-box:focus {
             outline: none;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.3);
         }
 
         footer {
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
             text-align: center;
             padding: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
+            color: #71717a;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
         }
-
-        footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
+        footer a { color: #a78bfa; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
 
         @media (max-width: 768px) {
-            .ai-features {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
+            .capability-grid { grid-template-columns: 1fr; }
+            .cat-container { width: 90px; height: 75px; bottom: 1rem; right: 1rem; }
+            .cat-tail { width: 32px; right: -28px; }
         }
     </style>
 </head>
 <body>
+    <div class="bg-gradient"></div>
+    <div class="paw"></div>
+    <div class="paw"></div>
+    <div class="paw"></div>
+    <div class="paw"></div>
+    <div class="paw"></div>
+
     <nav>
         <div class="nav-container">
             <div class="logo">Amy Denton</div>
@@ -198,7 +307,7 @@
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="qualifications.html">Qualifications</a></li>
                 <li><a href="service.html">Service</a></li>
-                <li><a href="genai.html" style="color: #667eea;">AI Showcase</a></li>
+                <li><a href="genai.html" class="active">AI Showcase</a></li>
             </ul>
         </div>
     </nav>
@@ -206,118 +315,84 @@
     <main>
         <section class="hero">
             <h1>Generative AI Showcase</h1>
-            <p>Exploring the Capabilities and Applications of Artificial Intelligence</p>
+            <p>What genAI can do—and how this page was built with it</p>
         </section>
 
         <section class="content-section">
             <h2>What is Generative AI?</h2>
-            <p>Generative Artificial Intelligence (GenAI) represents a transformative technology that can create new content, including text, images, code, and more. Unlike traditional AI systems that classify or recognize patterns, generative AI learns from vast amounts of data and can produce entirely new, original outputs based on learned patterns and user prompts.</p>
-            <p>This page demonstrates the practical applications and potential of generative AI technology, created through iterative prompting and refinement to achieve the desired output quality and presentation.</p>
+            <p>Generative AI (genAI) creates new content—text, code, images, and more—from patterns learned from data. Instead of only classifying or recognizing, it produces new outputs from prompts. This page was designed and written with genAI, and features an animated black cat drawn and animated with CSS.</p>
         </section>
 
         <section class="content-section">
-            <h2>Key Capabilities of Generative AI</h2>
-            <div class="ai-features">
-                <div class="feature">
-                    <h3>Natural Language Processing</h3>
-                    <p>GenAI can understand and generate human-like text, enabling conversational interfaces, content creation, and language understanding at scale.</p>
+            <h2>Capabilities of GenAI</h2>
+            <div class="capability-grid">
+                <div class="capability">
+                    <h3>Text & language</h3>
+                    <p>Understand and generate natural language for chat, writing, and translation.</p>
                 </div>
-                <div class="feature">
-                    <h3>Code Generation</h3>
-                    <p>AI systems can write functional code based on descriptions, accelerating development and helping programmers solve complex problems faster.</p>
+                <div class="capability">
+                    <h3>Code generation</h3>
+                    <p>Write and refactor code from descriptions, speeding up development.</p>
                 </div>
-                <div class="feature">
-                    <h3>Creative Content Creation</h3>
-                    <p>From images to music to written content, generative AI can assist in creative processes and produce original material in multiple formats.</p>
+                <div class="capability">
+                    <h3>Creative content</h3>
+                    <p>Assist with images, music, and design from high-level ideas.</p>
                 </div>
-                <div class="feature">
-                    <h3>Data Analysis & Insights</h3>
-                    <p>GenAI can analyze complex datasets and provide meaningful insights, summaries, and predictions that inform decision-making.</p>
+                <div class="capability">
+                    <h3>Analysis & reasoning</h3>
+                    <p>Summarize data, answer questions, and help with decision-making.</p>
                 </div>
             </div>
         </section>
 
         <section class="content-section">
-            <h2>Applications in Software Engineering</h2>
-            <p>Generative AI has become an invaluable tool in software development, offering numerous practical applications:</p>
-            <ul style="margin-left: 2rem; color: #555;">
-                <li><strong>Code Completion:</strong> AI assists in writing code faster and reducing errors through intelligent suggestions</li>
-                <li><strong>Documentation Generation:</strong> Automatically creating comprehensive documentation from code comments and structure</li>
-                <li><strong>Testing & Debugging:</strong> AI can generate test cases and help identify potential bugs and issues</li>
-                <li><strong>Architecture Design:</strong> Assisting in planning system architecture and identifying design patterns</li>
-                <li><strong>Learning & Training:</strong> Creating personalized learning materials and tutorials for skill development</li>
-            </ul>
-        </section>
+            <h2>How This Page Was Made</h2>
+            <p>This page was built by starting with a simple prompt and refining it until the result was satisfactory. All styling is in-page CSS only (no external stylesheets). The final prompt used is shown below. Say hi to the cat in the corner—it’s animated with CSS keyframes.</p>
 
-        <section class="content-section">
-            <h2>Ethical Considerations</h2>
-            <p>As we leverage generative AI technology, it's important to consider ethical implications:</p>
-            <ul style="margin-left: 2rem; color: #555;">
-                <li><strong>Transparency:</strong> Being clear about when AI-generated content is being used</li>
-                <li><strong>Accuracy:</strong> Verifying AI-generated output for correctness and validity</li>
-                <li><strong>Bias:</strong> Understanding and mitigating potential biases in AI-generated content</li>
-                <li><strong>Attribution:</strong> Properly crediting sources and understanding training data usage</li>
-                <li><strong>Responsibility:</strong> Maintaining human oversight and accountability in AI-assisted decisions</li>
-            </ul>
-        </section>
+            <div class="prompt-section">
+                <label for="ai-prompt">Final prompt used to create this page</label>
+                <textarea id="ai-prompt" class="prompt-box" readonly>Prompt 1:
 
-        <section class="content-section">
-            <h2>The Development Process</h2>
-            <p>This page was created through an iterative prompting process. Below is the refined prompt that was used to generate the core concepts and structure of this AI showcase page:</p>
-            
-            <div class="prompt-container">
-                <label for="ai-prompt">Final Prompt Used:</label>
-                <textarea id="ai-prompt" readonly>Build a professional web page about Generative AI that would be appropriate for a portfolio. The page should help visitors understand what GenAI is and why it matters in today's tech landscape.
+Please give me creative ideas to make a website page on my personal website stand out and interactive. Here are the requirements: AI-generated page
+Uses Generative AI to create one additional page.
+Does not change styles like the other required pages.
+Styling will be handled through AI-generated inline CSS instead of from the required external CSS files 
+Presents the capabilities of generative artificial intelligence (genAI).
+Starts with a simple prompt.
+Continually adds to the prompt until output is satisfied by you.
+Creates a text box in the new page (Generative AI services can do this for you) that contains the prompt used by you in the final version of your AI-generated page.
+The text box refers to an HTML textbox (see HTML Textbox: A Comprehensive GuideLinks to an external site.).
+You can achieve this behavior with multiline text box (i.e., a <textarea>) that is pre-populated with your prompt text.
+If your prompt is very lengthy, you should add a scrollbar to the text box. 
+Labels the page as genai.html.
+Prompt 2:
 
-Include these main sections:
-- An introduction that explains Generative AI in accessible terms and shows why it's significant
-- A breakdown of what GenAI can actually do (text generation, coding, creative content, analysis)
-- Real-world applications, especially in software development and engineering
-- A thoughtful discussion about the ethical side of using AI tools
-- An explanation of how iterative prompting helped refine the content on this page
-- A section about where AI is heading and what to expect
-- Curated links to reputable AI research organizations
-
-Design considerations:
-- Use clear visual organization with good hierarchy
-- Apply a modern color scheme (purples and blues work well)
-- Make information scannable with lists and sections
-- Ensure navigation connects back to other portfolio pages
-- Show that I understand both the technical side and the responsible use of AI
-
-This prompt itself should appear in a text area so visitors can see the actual process behind the page creation.</textarea>
+Make the style have similar elements and design as my existing styles. I am looking for something cool, some sort of animation, or moving figure (I have a black cat, maybe incorporate that?) you must follow the requirements from the previous message, but you do not need to consider the existing genai page I have.</textarea>
             </div>
-        </section>
-
-        <section class="content-section">
-            <h2>Future of Generative AI</h2>
-            <p>The field of generative AI continues to evolve rapidly. Some exciting areas of future development include:</p>
-            <ul style="margin-left: 2rem; color: #555;">
-                <li><strong>Multimodal AI:</strong> Systems that seamlessly work with text, images, audio, and video simultaneously</li>
-                <li><strong>Improved Reasoning:</strong> Better logical reasoning and complex problem-solving capabilities</li>
-                <li><strong>Personalization:</strong> More customized and context-aware AI responses</li>
-                <li><strong>Efficiency:</strong> Faster and more resource-efficient AI models</li>
-                <li><strong>Integration:</strong> Deeper integration into everyday tools and workflows</li>
-            </ul>
-        </section>
-
-        <section class="content-section">
-            <h2>Resources for Learning More</h2>
-            <p>If you're interested in learning more about generative AI, here are some valuable resources:</p>
-            <ul style="margin-left: 2rem; color: #555;">
-                <li><a href="https://www.openai.com" target="_blank" style="color: #667eea;">OpenAI</a> - Leading AI research organization</li>
-                <li><a href="https://www.deepmind.google" target="_blank" style="color: #667eea;">Google DeepMind</a> - AI research and development</li>
-                <li><a href="https://www.anthropic.com" target="_blank" style="color: #667eea;">Anthropic</a> - AI safety and research</li>
-                <li><a href="https://arxiv.org/list/cs.AI/recent" target="_blank" style="color: #667eea;">arXiv AI Papers</a> - Latest research papers</li>
-                <li><a href="https://www.coursera.org/courses?query=generative%20ai" target="_blank" style="color: #667eea;">Coursera AI Courses</a> - Online learning</li>
-            </ul>
         </section>
     </main>
 
-    <footer>
-        <div>
-            <p>Contact: <a href="mailto:amy.denton@gmail.com">amy.denton@gmail.com</a></p>
+    <div class="cat-container">
+        <div class="cat">
+            <div class="cat-ear left"></div>
+            <div class="cat-ear right"></div>
+            <div class="cat-tail"></div>
+            <div class="cat-head"></div>
+            <div class="cat-body"></div>
+            <div class="cat-eye left"></div>
+            <div class="cat-eye right"></div>
+            <div class="cat-nose"></div>
+            <div class="cat-whisker w1"></div>
+            <div class="cat-whisker w2"></div>
+            <div class="cat-whisker w3"></div>
+            <div class="cat-whisker w4"></div>
+            <div class="cat-whisker w5"></div>
+            <div class="cat-whisker w6"></div>
         </div>
+    </div>
+
+    <footer>
+        <p>Contact: <a href="mailto:amy.denton@gmail.com">amy.denton@gmail.com</a></p>
     </footer>
 </body>
 </html>
