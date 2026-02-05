@@ -15,13 +15,21 @@
     --pale-green: #d4e8d0;
     --text-color: #2d3436;
     --white: #fff;
+    /* Dimensional shadows */
+    --shadow-soft: 0 2px 8px rgba(45, 80, 22, 0.08);
+    --shadow-medium: 0 4px 16px rgba(45, 80, 22, 0.12), 0 2px 4px rgba(45, 80, 22, 0.06);
+    --shadow-raised: 0 8px 24px rgba(45, 80, 22, 0.14), 0 2px 8px rgba(45, 80, 22, 0.08);
+    --shadow-card-hover: 0 12px 32px rgba(45, 80, 22, 0.18), 0 4px 12px rgba(45, 80, 22, 0.1);
+    --shadow-nav: 4px 0 20px rgba(0, 0, 0, 0.12);
+    --shadow-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--white);
+    background: linear-gradient(160deg, #f8fbf7 0%, #eef5eb 35%, #e5f0e0 100%);
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -29,7 +37,7 @@ body {
 
 /* Navigation Bar - Left Sidebar */
 .navbar {
-    background-color: var(--primary-color);
+    background: linear-gradient(180deg, #355f1a 0%, var(--primary-color) 25%, #264414 100%);
     padding: 2rem 0;
     position: fixed;
     left: 0;
@@ -38,6 +46,7 @@ body {
     height: 100vh;
     overflow-y: auto;
     z-index: 100;
+    box-shadow: var(--shadow-nav);
 }
 
 .nav-container {
@@ -52,8 +61,9 @@ body {
     color: var(--white);
     padding: 1.5rem;
     text-align: center;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 1.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links {
@@ -120,9 +130,24 @@ main {
 .portfolio-hero,
 .qualifications-hero,
 .service-hero {
-    background-color: var(--pale-green);
+    background: linear-gradient(145deg, #cce3c8 0%, var(--pale-green) 50%, #b8ddb2 100%);
     padding: 3rem 2rem;
     text-align: center;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+}
+
+.hero::after,
+.portfolio-hero::after,
+.qualifications-hero::after,
+.service-hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(45, 80, 22, 0.15), transparent);
 }
 
 .hero-content {
@@ -142,6 +167,7 @@ main {
     border-radius: 50%;
     border: 4px solid var(--accent-color);
     object-fit: cover;
+    box-shadow: var(--shadow-raised), var(--shadow-inset-top);
 }
 
 h1 {
@@ -177,17 +203,18 @@ p {
 
 /* About Section */
 .about {
-    background-color: var(--white);
+    background: linear-gradient(180deg, var(--white) 0%, #fafcf9 100%);
     padding: 2rem;
+    box-shadow: var(--shadow-soft);
 }
 
 .highlight-box {
-    background-color: var(--light-bg);
+    background: linear-gradient(145deg, #f0f8ee 0%, var(--light-bg) 100%);
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
     border: 2px solid var(--accent-color);
-    box-shadow: 0 2px 8px rgba(74, 124, 60, 0.1);
+    box-shadow: var(--shadow-medium), var(--shadow-inset-top);
 }
 
 .highlight-box h3 {
@@ -216,8 +243,9 @@ p {
 
 /* Quick Links */
 .quick-links {
-    background-color: var(--pale-green);
+    background: linear-gradient(180deg, var(--pale-green) 0%, #c8e2c4 100%);
     padding: 2rem;
+    box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
 }
 
 .link-grid {
@@ -228,18 +256,18 @@ p {
 }
 
 .link-card {
-    background-color: var(--white);
+    background: linear-gradient(145deg, var(--white) 0%, #f8fbf7 100%);
     padding: 1.5rem;
     border-radius: 12px;
     border: 2px solid var(--accent-color);
-    box-shadow: 0 4px 12px rgba(74, 124, 60, 0.15);
-    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    box-shadow: var(--shadow-medium), var(--shadow-inset-top);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
 }
 
 .link-card:hover {
     transform: translateY(-5px);
-    background-color: rgba(212, 232, 208, 0.3);
-    box-shadow: 0 6px 16px rgba(74, 124, 60, 0.25); /* Adding shading */
+    background: linear-gradient(145deg, rgba(232, 243, 227, 0.9) 0%, rgba(212, 232, 208, 0.4) 100%);
+    box-shadow: var(--shadow-card-hover), var(--shadow-inset-top);
 }
 
 .link-card h3 {
@@ -259,16 +287,21 @@ p {
 
 /* Portfolio Projects */
 .portfolio-content {
-    background-color: var(--white);
+    background: linear-gradient(180deg, var(--white) 0%, #fafcf9 100%);
 }
 
 .project {
-    background: linear-gradient(to right, var(--pale-green), var(--light-bg));
+    background: linear-gradient(125deg, #e0edd9 0%, var(--pale-green) 40%, var(--light-bg) 100%);
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 12px;
     border-left: 5px solid var(--accent-color);
-    box-shadow: 0 4px 12px rgba(74, 124, 60, 0.1);
+    box-shadow: var(--shadow-medium), var(--shadow-inset-top);
+    transition: box-shadow 0.3s;
+}
+
+.project:hover {
+    box-shadow: var(--shadow-raised), var(--shadow-inset-top);
 }
 
 .project-header {
@@ -308,17 +341,18 @@ p {
 
 /* Skills Section */
 .skills-section {
-    background-color: var(--pale-green);
+    background: linear-gradient(180deg, #c8e2c4 0%, var(--pale-green) 100%);
     padding: 2rem;
+    box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
 }
 
 .skills-category {
-    background-color: var(--white);
+    background: linear-gradient(145deg, var(--white) 0%, #f8fbf7 100%);
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     border-radius: 8px;
     border-top: 4px solid var(--accent-color);
-    box-shadow: 0 2px 8px rgba(74, 124, 60, 0.1);
+    box-shadow: var(--shadow-medium), var(--shadow-inset-top);
 }
 
 .skill-list {
@@ -331,24 +365,25 @@ p {
 
 .skill-list li {
     padding: 0.75rem 1rem;
-    background-color: var(--light-bg);
+    background: linear-gradient(145deg, #f0f8ee 0%, var(--light-bg) 100%);
     border-radius: 6px;
     border-left: 3px solid var(--accent-color);
+    box-shadow: 0 1px 4px rgba(45, 80, 22, 0.06);
 }
 
 /* Education Section */
 .education-section {
-    background-color: var(--white);
+    background: linear-gradient(180deg, #fafcf9 0%, var(--white) 100%);
     padding: 2rem;
 }
 
 .education-item {
-    background-color: var(--light-bg);
+    background: linear-gradient(145deg, #eef5eb 0%, var(--light-bg) 100%);
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     border-left: 5px solid var(--accent-color);
-    box-shadow: 0 2px 8px rgba(74, 124, 60, 0.1);
+    box-shadow: var(--shadow-medium), var(--shadow-inset-top);
 }
 
 .education-item h3 {
@@ -369,16 +404,17 @@ p {
 
 /* Certifications */
 .certifications-section {
-    background-color: var(--pale-green);
+    background: linear-gradient(180deg, var(--pale-green) 0%, #c8e2c4 100%);
     padding: 2rem;
+    box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
 }
 
 .certification-item {
-    background-color: var(--white);
+    background: linear-gradient(145deg, var(--white) 0%, #f8fbf7 100%);
     padding: 1.5rem;
     border-radius: 8px;
     border: 2px solid var(--accent-color);
-    box-shadow: 0 2px 8px rgba(74, 124, 60, 0.1);
+    box-shadow: var(--shadow-medium), var(--shadow-inset-top);
 }
 
 .certification-item h3 {
@@ -395,10 +431,10 @@ p {
 .resume-viewer {
     margin-top: 1.5rem;
     padding: 1.5rem;
-    background-color: var(--light-bg);
+    background: linear-gradient(145deg, #f0f8ee 0%, var(--light-bg) 100%);
     border-radius: 8px;
     border: 2px solid var(--accent-color);
-    box-shadow: 0 2px 8px rgba(74, 124, 60, 0.1);
+    box-shadow: var(--shadow-soft), var(--shadow-inset-top);
 }
 
 .resume-viewer p {
@@ -433,12 +469,14 @@ p {
     background-color: #3a5f30;
     transform: translateY(-2px);
     color: var(--white) !important;
+    box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
 }
 
 /* Interests Section */
 .interests-section {
-    background-color: var(--pale-green);
+    background: linear-gradient(180deg, var(--pale-green) 0%, #c8e2c4 100%);
     padding: 2rem;
+    box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
 }
 
 .interests-grid {
@@ -449,16 +487,17 @@ p {
 }
 
 .interest-card {
-    background-color: var(--white);
+    background: linear-gradient(145deg, var(--white) 0%, #f8fbf7 100%);
     padding: 1.5rem;
     border-radius: 12px;
     border: 2px solid var(--accent-color);
-    box-shadow: 0 4px 12px rgba(74, 124, 60, 0.1);
-    transition: transform 0.3s;
+    box-shadow: var(--shadow-medium), var(--shadow-inset-top);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .interest-card:hover {
     transform: translateY(-5px);
+    box-shadow: var(--shadow-card-hover), var(--shadow-inset-top);
 }
 
 .interest-card h3 {
@@ -483,7 +522,7 @@ p {
 
 /* Service Section */
 .service-content {
-    background-color: var(--white);
+    background: linear-gradient(180deg, var(--white) 0%, #fafcf9 100%);
     padding: 2rem;
 }
 
@@ -495,12 +534,17 @@ p {
 }
 
 .service-item {
-    background: linear-gradient(135deg, var(--light-bg), var(--pale-green));
+    background: linear-gradient(135deg, #e5f0e0 0%, var(--light-bg) 40%, var(--pale-green) 100%);
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 12px;
     border-left: 5px solid var(--accent-color);
-    box-shadow: 0 4px 12px rgba(74, 124, 60, 0.1);
+    box-shadow: var(--shadow-medium), var(--shadow-inset-top);
+    transition: box-shadow 0.3s;
+}
+
+.service-item:hover {
+    box-shadow: var(--shadow-raised), var(--shadow-inset-top);
 }
 
 .service-item h2 {
@@ -509,11 +553,12 @@ p {
 }
 
 .service-details {
-    background-color: var(--white);
+    background: linear-gradient(145deg, var(--white) 0%, #f8fbf7 100%);
     padding: 1.5rem;
     margin-top: 1rem;
     border-radius: 8px;
     border: 1px solid var(--light-bg);
+    box-shadow: 0 1px 6px rgba(45, 80, 22, 0.06);
 }
 
 .service-details h3 {
@@ -541,20 +586,23 @@ p {
 
 /* Resources Section */
 .resources {
-    background-color: var(--pale-green);
+    background: linear-gradient(180deg, var(--pale-green) 0%, #c8e2c4 100%);
     padding: 2rem;
+    box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
 }
 
 /* Additional Resources */
 .additional-resources {
-    background-color: var(--pale-green);
+    background: linear-gradient(180deg, #c8e2c4 0%, var(--pale-green) 100%);
     padding: 2rem;
+    box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
 }
 
 /* Professional Links */
 .professional-links {
-    background-color: var(--white);
+    background: linear-gradient(180deg, #fafcf9 0%, var(--white) 100%);
     padding: 2rem;
+    box-shadow: var(--shadow-soft);
 }
 
 /* External Links */
@@ -592,13 +640,14 @@ p {
 
 /* Footer - full width at bottom of page (peer feedback: move contact from right bar to page footer) */
 footer {
-    background-color: var(--primary-color);
+    background: linear-gradient(180deg, var(--primary-color) 0%, #1f3810 100%);
     color: var(--white);
     text-align: center;
     padding: 2rem;
     width: 100%;
     margin-left: 0;
     margin-top: auto;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .footer-content p {
