@@ -506,13 +506,24 @@ main {
 
 /* External Links */
 .external-links {
-    list-style-position: inside;
+    list-style: none;
+    padding-left: 0;
     color: #555;
     margin-top: 1rem;
 }
 
 .external-links li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: 0.8rem;
+}
+
+.external-links .item-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .external-links a {

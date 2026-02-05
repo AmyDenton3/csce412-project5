@@ -565,17 +565,19 @@ p {
 }
 
 .external-links li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: 1rem;
-    padding-left: 1.5rem;
-    position: relative;
+    list-style: none;
+    padding-left: 0;
 }
 
-.external-links li:before {
-    content: "→";
-    color: var(--accent-color);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
+.external-links .item-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .external-links a {
