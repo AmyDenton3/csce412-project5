@@ -213,11 +213,28 @@ p {
     font-style: italic;
 }
 
-/* About Section */
+/* About Section - Style 2 distinct layout: 2-column grid (text left, highlight-box right vs style1's single column) */
 .about {
     background: linear-gradient(180deg, var(--white) 0%, #fafcf9 100%);
     padding: 2rem;
     box-shadow: var(--shadow-soft);
+}
+
+.about .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.about .container > h2 {
+    grid-column: 1 / -1;
+}
+
+.about .container > .highlight-box {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    margin-top: 0;
 }
 
 .highlight-box {
@@ -486,7 +503,7 @@ p {
     margin-bottom: 0.5rem;
 }
 
-/* Resume Viewer */
+/* Resume Viewer - Style 2 distinct layout: 2-column (text + download left, embed right vs style1's single column) */
 .resume-viewer {
     margin-top: 1.5rem;
     padding: 1.5rem;
@@ -494,6 +511,16 @@ p {
     border-radius: 8px;
     border: 2px solid var(--accent-color);
     box-shadow: var(--shadow-soft), var(--shadow-inset-top);
+}
+
+.resume-section .resume-viewer {
+    text-align: left;
+}
+
+.resume-section .resume-viewer embed {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto 1rem 0;
 }
 
 .resume-viewer p {
@@ -580,26 +607,46 @@ p {
     text-decoration: underline;
 }
 
-/* Service Section - Style 2 distinct layout: service items in 2-column grid (vs style1's single-column stack) */
+/* Service Section - grouped by location (Texas A&M, then Westlake High School) */
 .service-content {
     background: linear-gradient(180deg, var(--white) 0%, #fafcf9 100%);
-    padding: 2rem;
+    padding: 2rem 3rem;
 }
 
 .service-content .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
 }
 
-.service-content .container > h1,
+.service-content .container > h1 {
+    margin-bottom: 0.5rem;
+}
+
 .service-content .container > p,
 .service-content .container > .intro {
-    grid-column: 1 / -1;
+    margin-bottom: 1.5rem;
 }
 
-.service-content .container > .service-item {
+.service-content .container > .values-section {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.service-group {
+    margin-bottom: 2.5rem;
+}
+
+.service-group:last-of-type {
     margin-bottom: 0;
+}
+
+.service-group-title {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
 }
 
 .intro {
@@ -617,6 +664,12 @@ p {
     border-left: 5px solid var(--accent-color);
     box-shadow: var(--shadow-medium), var(--shadow-inset-top);
     transition: box-shadow 0.3s;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+.service-group .service-item:last-child {
+    margin-bottom: 0;
 }
 
 .service-item:hover {
@@ -660,11 +713,20 @@ p {
     font-weight: bold;
 }
 
-/* Values Section - Style 2 distinct layout: 4-column values grid (vs style1's 2-column) */
+/* Values Section - even spacing with service content above */
 .values-section {
     background: linear-gradient(180deg, var(--pale-green) 0%, #c8e2c4 100%);
-    padding: 2rem;
+    padding: 2rem 3rem;
     box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
+}
+
+.values-section .container {
+    max-width: 100%;
+}
+
+/* Volunteer resources - even section spacing on service page */
+main .volunteer-resources {
+    padding: 2rem 3rem;
 }
 
 .values-grid {
@@ -672,6 +734,7 @@ p {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 1.5rem;
+    align-items: stretch;
 }
 
 .value-card {
@@ -682,6 +745,10 @@ p {
     border: 2px solid var(--accent-color);
     box-shadow: var(--shadow-medium), var(--shadow-inset-top);
     transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    box-sizing: border-box;
 }
 
 .value-card:hover {
@@ -699,6 +766,7 @@ p {
     color: var(--text-color);
     font-size: 0.9rem;
     margin-bottom: 0;
+    flex: 1;
 }
 
 /* Resources Section */
@@ -708,11 +776,27 @@ p {
     box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
 }
 
-/* Additional Resources */
+/* Additional Resources - single column list for cleaner alignment on portfolio */
 .additional-resources {
     background: linear-gradient(180deg, #c8e2c4 0%, var(--pale-green) 100%);
     padding: 2rem;
     box-shadow: inset 0 2px 12px rgba(45, 80, 22, 0.06);
+}
+
+.additional-resources .container {
+    max-width: 100%;
+}
+
+.additional-resources .external-links {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.additional-resources .external-links li {
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0;
 }
 
 /* Professional Links */
@@ -722,11 +806,14 @@ p {
     box-shadow: var(--shadow-soft);
 }
 
-/* External Links */
+/* External Links - Style 2 distinct layout: 2-column grid (vs style1's single column list) */
 .external-links {
     list-style: none;
     color: var(--text-color);
     margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 2rem;
 }
 
 .external-links li {
@@ -895,19 +982,21 @@ footer a:hover {
         grid-template-columns: 1fr;
     }
 
-    .service-content .container {
+
+    .values-grid {
         grid-template-columns: 1fr;
     }
 
-    .service-content .container > .service-item {
-        margin-bottom: 2rem;
+    .about .container {
+        grid-template-columns: 1fr;
     }
 
-    .service-content .container > .service-item:last-child {
-        margin-bottom: 0;
+    .about .container > .highlight-box {
+        grid-column: 1;
+        grid-row: auto;
     }
 
-    .values-grid {
+    .external-links {
         grid-template-columns: 1fr;
     }
 

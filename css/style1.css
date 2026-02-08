@@ -420,12 +420,32 @@ main {
 }
 
 /* Service Items */
+.service-group {
+    margin-bottom: 2.5rem;
+}
+
+.service-group:last-of-type {
+    margin-bottom: 0;
+}
+
+.service-group-title {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+}
+
 .service-item {
     background-color: var(--light-bg);
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 8px;
     border-left: 4px solid var(--accent-color);
+}
+
+.service-group .service-item:last-child {
+    margin-bottom: 0;
 }
 
 .service-item h2 {
