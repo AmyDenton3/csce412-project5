@@ -579,12 +579,14 @@ p {
     border-radius: 12px;
     border: 2px solid var(--accent-color);
     box-shadow: var(--shadow-medium), var(--shadow-inset-top);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s, border-color 0.3s;
 }
 
 .interest-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-card-hover), var(--shadow-inset-top);
+    background: linear-gradient(145deg, #c8e2c4 0%, #b8ddb2 50%, #a8d4a0 100%);
+    border-color: var(--primary-color);
 }
 
 .interest-card h3 {
